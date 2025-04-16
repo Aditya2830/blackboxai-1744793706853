@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Generated Quiz - E-Learning Quiz Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white p-8 rounded shadow-md w-full max-w-3xl">
+        <h1 class="text-2xl font-bold mb-6 text-center">Generated Quiz</h1>
+        <form>
+            {% for mcq in mcqs %}
+            <div class="mb-6">
+                <p class="font-semibold mb-2">{{ forloop.counter }}. {{ mcq.question }}</p>
+                <div class="space-y-2">
+                    {% for option in mcq.options %}
+                    <label class="inline-flex items-center space-x-2">
+                        <input type="radio" name="question{{ forloop.parentloop.counter }}" value="{{ option }}" class="form-radio text-blue-600" />
+                        <span>{{ option }}</span>
+                    </label>
+                    {% endfor %}
+                </div>
+                <p class="mt-2 text-green-600 font-semibold">Answer: {{ mcq.answer }}</p>
+            </div>
+            {% endfor %}
+        </form>
+        <div class="text-center">
+            <a href="/" class="inline-block mt-4 px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Generate Another Quiz</a>
+        </div>
+    </div>
+</body>
+</html>
